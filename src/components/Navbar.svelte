@@ -45,7 +45,7 @@
       
         <!-- Logo / Home Link (Floating Bubble) -->
         <div class="shrink-0 pointer-events-auto mr-4">
-            <a href="/" 
+            <a href="{currentPath === '/' ? null : '/'}" 
                class="group flex items-center justify-center rounded-full bg-white/5 backdrop-blur-sm dark:bg-white/5 border border-white/20 shadow-sm hover:shadow-lg hover:bg-white/15 dark:hover:bg-white/15 transition-all duration-300 w-10 h-10 p-0 {isLinkActive('/', currentPath) ? 'ring-2 ring-blue-500/50' : ''}"
                aria-label="Home"
             >

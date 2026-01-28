@@ -23,13 +23,13 @@ export const friendLinks: FriendLink[] = [
         name: "Kroxitine-克罗西丁",
         link: "https://kroxitine.com/",
         description: "如果让我多睡一会儿，我什么都愿意做的（辣鸡小伊）",
-        avatar: "http://q1.qlogo.cn/g?b=qq&nk=2657124519&s=640",
+        avatar: "https://q1.qlogo.cn/g?b=qq&nk=2657124519&s=640",
       },
       {
         name: "炎忍",
         link: "https://imyan.ren/",
         description: "热爱创造有趣的项目。",
-        avatar: "http://q1.qlogo.cn/g?b=qq&nk=2323355219&s=640",
+        avatar: "https://q1.qlogo.cn/g?b=qq&nk=2323355219&s=640",
       },
       {
         name: "扶摇 Skyrocketing",
@@ -48,7 +48,7 @@ export const friendLinks: FriendLink[] = [
         name: "Meiage-米来吉",
         link: "https://miraged.fun/",
         description: "",
-        avatar: "http://q1.qlogo.cn/g?b=qq&nk=669205145&s=640",
+        avatar: "https://q1.qlogo.cn/g?b=qq&nk=669205145&s=640",
       },
     ],
   },
@@ -59,14 +59,14 @@ export const friendLinks: FriendLink[] = [
         name: "Pi(品品)",
         link: "https://b.dopi.cc/",
         description: "这个人非常的懒，非常非常的懒",
-        avatar: "http://q1.qlogo.cn/g?b=qq&nk=910083634&s=640",
+        avatar: "https://q1.qlogo.cn/g?b=qq&nk=910083634&s=640",
         disable: true,
       },
       {
         name: "Wainbaro(肖究佟)",
         link: "https://wainbaro.github.io/",
         description: "“画画使我快乐。”",
-        avatar: "http://q1.qlogo.cn/g?b=qq&nk=1411878525&s=640",
+        avatar: "https://q1.qlogo.cn/g?b=qq&nk=1411878525&s=640",
         disable: true,
       },
       {
@@ -109,6 +109,6 @@ export const siteConfig = {
   ], // Typewriter slogan, styled text will be colored
   highlightText: "欢迎来到我的主页！", // Text to be highlighted/colored
   description: "我是一名后端开发者，会一点前端。想学习更多有趣的技术！", // Meta Description
-  blogUrl: "https://www.wucheng.work", // External Blog Link
-  avatar: "http://q1.qlogo.cn/g?b=qq&nk=3241748701&s=640", // User Avatar URL
+  blogUrl: "https://blog.wucheng.work", // External Blog Link
+  avatar: "https://q1.qlogo.cn/g?b=qq&nk=3241748701&s=640", // User Avatar URL
 };
