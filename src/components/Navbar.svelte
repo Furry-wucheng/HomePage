@@ -37,7 +37,7 @@
 </script>
 
 <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 pointer-events-none">
-  <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+  <div class="max-w-340 mx-auto px-4 sm:px-6 lg:px-8 mt-4">
     <div class="flex items-center justify-between h-16">
       
       <!-- Desktop & Mobile Header Container -->
