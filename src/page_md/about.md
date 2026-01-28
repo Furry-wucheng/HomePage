@@ -1,6 +1,6 @@
 ---
 title: "关于我"
-description: "Who I Am | Wucheng's Home"
+description: "关于我 | About Me"
 ---
 你好！这里是戊成！是一个福瑞控，也是一个后端开发，会点前端
 

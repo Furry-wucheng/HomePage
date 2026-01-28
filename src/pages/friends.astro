@@ -1,10 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import FriendList from '../components/FriendList.svelte';
-import { friendLinks } from '../config';
+import { friendLinks, siteConfig } from '../config';
 ---
 
-<Layout title="Friends | Connections">
+<Layout title={`友链 | ${siteConfig.title}`} description="查看我的友链列表。">
   <div class="max-w-5xl mx-auto py-12 animate-slide-up">
     <div class="text-center mb-16">
       <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">友链</h1>

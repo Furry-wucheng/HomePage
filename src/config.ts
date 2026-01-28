@@ -99,7 +99,7 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const siteConfig = {
-  title: "Wucheng's Home", // Browser Tab Title
+  title: "戊成的主页", // Browser Tab Title
   siteTitle: "主页", // Navbar Logo Text
   subTitle: "你好，我是戊成", // Used as main heading
   slogan: [
@@ -108,7 +108,7 @@ export const siteConfig = {
     { text: "戊成!", styled: false },
   ], // Typewriter slogan, styled text will be colored
   highlightText: "欢迎来到我的主页！", // Text to be highlighted/colored
-  description: "数字宇宙中的个人空间。",
+  description: "我是一名后端开发者，会一点前端。想学习更多有趣的技术！", // Meta Description
   blogUrl: "https://www.wucheng.work", // External Blog Link
   avatar: "http://q1.qlogo.cn/g?b=qq&nk=3241748701&s=640", // User Avatar URL
 };
