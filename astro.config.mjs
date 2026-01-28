@@ -2,9 +2,16 @@
 
 import svelte from '@astrojs/svelte';
 import { defineConfig } from 'astro/config';
+import icon from 'astro-icon';
+
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-	// Enable Svelte to support Svelte components.
-	integrations: [svelte()],
+  // Enable Svelte to support Svelte components.
+  integrations: [svelte(), icon()],
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

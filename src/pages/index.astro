@@ -1,34 +1,161 @@
 ---
-// Component Imports
-import Counter from '../components/Counter.svelte';
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+import Layout from '../layouts/Layout.astro';
+import { socialLinks, siteConfig } from '../config';
+import { Icon } from 'astro-icon/components';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<style>
-			html,
-			body {
-				font-family: system-ui;
-				margin: 0;
-			}
-			body {
-				padding: 2rem;
-			}
-		</style>
-	</head>
-	<body>
-		<main>
-			<Counter client:visible>
-				<h1>Hello, Svelte!</h1>
-			</Counter>
-		</main>
-	</body>
-</html>
+<Layout title={`${siteConfig.title}`}>
+	<div class="flex flex-col justify-center items-center min-h-[calc(100vh-200px)] text-center px-4">
+		
+    <div class="relative group">
+       <!-- Glow effect removed as requested -->
+       <!-- <div class="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" style="transition: opacity 1s;"></div> -->
+       <img 
+        src={siteConfig.avatar} 
+        alt="Avatar" 
+        class="relative w-40 h-40 rounded-full border-4 border-white/50 dark:border-white/10 shadow-2xl mb-8 object-cover"
+        style="view-transition-name: avatar;"
+      />
+    </div>
+
+    <!-- Typewriter Slogan -->
+    <div class="mb-4 min-h-[5rem] md:min-h-[6rem] flex items-center justify-center">
+      <h1 class="text-5xl md:text-7xl font-bold pb-2 typewriter-text text-gray-900 dark:text-white text-left">
+        <span id="typewriter"></span><span class="cursor">|</span>
+      </h1>
+    </div>
+    
+    <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+       <span class="font-semibold text-purple-600 dark:text-purple-400">{siteConfig.highlightText}</span>{siteConfig.description}
+    </p>
+
+    <div class="flex flex-wrap gap-6 justify-center">
+      {socialLinks.map(link => (
+        <a 
+          href={link.link} 
+          target="_blank"
+          class="flex items-center gap-2 px-6 py-3 rounded-full bg-white/50 dark:bg-white/5 border border-white/20 backdrop-blur-sm shadow-sm hover:shadow-lg hover:bg-white/80 dark:hover:bg-white/15 hover:-translate-y-1 transition-all duration-300 group"
+          aria-label={link.name}
+        >
+          <Icon name={link.icon} class="w-6 h-6 text-gray-700 dark:text-gray-200 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors" />
+          <span class="font-medium">{link.name}</span>
+        </a>
+      ))}
+    </div>
+	</div>
+</Layout>
+
+<script define:vars={{ sloganParts: siteConfig.slogan, subTitle: siteConfig.subTitle }}>
+  // Using a closure to avoid global variable pollution across navigations
+  (function() {
+    // Fallback if sloganParts is undefined
+    const rawParts = (sloganParts && sloganParts.length > 0) 
+      ? sloganParts 
+      : [{ text: subTitle || "Hello, World.", styled: true }];
+    
+    // Process parts to handle embedded line breaks (\n or <br>)
+    const parts = [];
+    rawParts.forEach(part => {
+      if (part.text) {
+        const segments = part.text.split(/<br\s*\/?>|\n/);
+        segments.forEach((seg, i) => {
+          if (i > 0) parts.push({ br: true });
+          if (seg) parts.push({ ...part, text: seg });
+        });
+      } else {
+        parts.push(part);
+      }
+    });
+      
+    let typewriter;
+    let partIndex = 0;
+    let charIndex = 0;
+    
+    function type() {
+      if (!typewriter) return; // Guard clause
+      
+      if (partIndex >= parts.length) return; // Finished
+      
+      const currentPart = parts[partIndex];
+      
+      // Handle line break
+      if (currentPart.br) {
+        let currentEl = typewriter.children[partIndex];
+        if (!currentEl) {
+          typewriter.appendChild(document.createElement('br'));
+        }
+        // Move to next part immediately
+        partIndex++;
+        charIndex = 0;
+        setTimeout(type, 300); // Slight pause for line break
+        return;
+      }
+
+      // Ensure current span exists
+      let currentSpan = typewriter.children[partIndex];
+      if (!currentSpan) {
+        currentSpan = document.createElement('span');
+        if (currentPart.styled) {
+          // Add gradient classes
+          currentSpan.className = "bg-clip-text text-transparent bg-linear-to-r from-blue-500 via-purple-500 to-pink-500";
+        } else {
+          // Ensure normal text color
+          currentSpan.className = "text-gray-900 dark:text-white";
+        }
+        typewriter.appendChild(currentSpan);
+      }
+      
+      // Update text content of current span
+      currentSpan.textContent = currentPart.text.substring(0, charIndex + 1);
+      charIndex++;
+      
+      if (charIndex >= currentPart.text.length) {
+         // Move to next part
+         partIndex++;
+         charIndex = 0;
+      }
+      
+      // Check if we are done completely to stop the loop, otherwise continue
+      if (partIndex < parts.length) {
+        setTimeout(type, 100);
+      }
+    }
+
+    function startTypewriter() {
+        typewriter = document.getElementById('typewriter');
+        if (typewriter) {
+            partIndex = 0;
+            charIndex = 0;
+            typewriter.innerHTML = ''; // Start clean
+            setTimeout(type, 1000);
+        }
+    }
+
+    // Attach to Astro page load event for View Transitions
+    document.addEventListener('astro:page-load', startTypewriter);
+    
+    // Also run immediately if script loads after event (unlikely but safe)
+    // if (document.readyState === 'complete') startTypewriter();
+  })();
+</script>
+
+<style>
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .cursor {
+    animation: blink 1s step-end infinite;
+    background: linear-gradient(to bottom right, #3b82f6, #8b5cf6, #ec4899); /* from-blue-500 via-purple-500 to-pink-500 */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+</style>

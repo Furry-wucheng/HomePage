@@ -1,0 +1,68 @@
+---
+import StarryBackground from '../components/StarryBackground.svelte';
+import MeteorCanvas from '../components/MeteorCanvas.svelte';
+import Navbar from '../components/Navbar.svelte';
+import { siteConfig } from '../config';
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+
+interface Props {
+	title?: string;
+  description?: string;
+}
+
+const { title = siteConfig.title, description = siteConfig.description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="http://q1.qlogo.cn/g?b=qq&nk=3241748701&s=640" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+    
+    <!-- Initialize Theme to prevent flash of wrong theme -->
+    <script is:inline>
+      function applyTheme() {
+        const theme = (() => {
+          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            return localStorage.getItem('theme');
+          }
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+          }
+          return 'light';
+        })();
+      
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+
+      // Apply on initial load
+      applyTheme();
+
+      // Apply on View Transition navigation
+      document.addEventListener('astro:after-swap', applyTheme);
+    </script>
+    <ClientRouter />
+	</head>
+	<body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col font-sans transition-colors duration-500">
+    <StarryBackground client:idle transition:persist />
+    <MeteorCanvas client:load transition:persist />
+    <Navbar client:load currentPath={Astro.url.pathname} />
+
+    <main class="flex-grow pt-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full relative z-10">
+		  <slot />
+    </main>
+
+    <footer class="py-6 text-center text-sm text-gray-500 dark:text-gray-400">
+      <p>&copy;{new Date().getFullYear()} {"Wucheng"}. All rights reserved.</p>
+    </footer>
+	</body>
+</html>

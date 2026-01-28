@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FriendList from '../components/FriendList.svelte';
+import { friendLinks } from '../config';
+---
+
+<Layout title="Friends | Connections">
+  <div class="max-w-5xl mx-auto py-12 animate-slide-up">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">友链</h1>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        
+      </p>
+    </div>
+
+    <FriendList client:visible groups={friendLinks} />
+    
+    <div class="mt-20 p-8 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 text-center">
+        <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100">如何加入友链</h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-6">
+            请通过社交媒体与我联系，发送您的网站信息和简短介绍。
+        </p>
+        <!-- <a href="mailto:2538000780@qq.com" class="inline-block px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors font-medium">
+            Contact Me
+        </a> -->
+    </div>
+  </div>
+</Layout>
+
+<style>
+    .animate-slide-up {
+        animation: slideUp 0.8s ease-out forwards;
+    }
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
