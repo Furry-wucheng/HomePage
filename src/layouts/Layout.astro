@@ -27,20 +27,24 @@ const { title = siteConfig.title, description = siteConfig.description } = Astro
     <!-- Initialize Theme to prevent flash of wrong theme -->
     <script is:inline>
       function applyTheme() {
-        const theme = (() => {
-          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-            return localStorage.getItem('theme');
-          }
+        const savedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;
+        const theme = savedTheme || 'system';
+        
+        // Store theme in dataset for components to read
+        document.documentElement.dataset.theme = theme;
+        
+        if (theme === 'system') {
           if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark';
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
           }
-          return 'light';
-        })();
-      
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
         } else {
-          document.documentElement.classList.remove('dark');
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
         }
       }
 

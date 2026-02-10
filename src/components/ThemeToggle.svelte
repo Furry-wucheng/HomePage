@@ -1,20 +1,14 @@
 <script lang="ts">
-  import { tick } from 'svelte';
   import Icon from '@iconify/svelte';
 
   type Theme = 'light' | 'dark' | 'system';
   
-  // Initialize theme from localStorage immediately (client-side only)
-  let theme = $state<Theme>(
-    typeof window !== 'undefined' && localStorage.getItem('theme') 
-      ? (localStorage.getItem('theme') as Theme)
-      : 'system'
-  );
+  // Read initial theme from document (set by Layout.astro before component mounts)
+  const savedTheme = localStorage.getItem('theme') as Theme | null;
+  let theme = $state<Theme>(savedTheme || 'system');
 
-  // Apply theme on mount and whenever it changes
+  // Apply theme whenever it changes
   $effect(() => {
-    if (typeof window === 'undefined') return;
-    
     if (theme === 'system') {
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.documentElement.classList.add('dark');
@@ -32,6 +26,7 @@
 
   function setTheme(newTheme: Theme) {
     theme = newTheme;
+    document.documentElement.dataset.theme = newTheme;
     if (newTheme === 'system') {
       localStorage.removeItem('theme');
     } else {
