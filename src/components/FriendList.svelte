@@ -17,10 +17,18 @@
                     href={friend.disable ? null : friend.link} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    class="group relative block p-6 bg-white/40 backdrop-blur-sm dark:bg-white/5 border border-white/20 rounded-2xl transition-all duration-300 w-full text-left
-                    {friend.disable ? 'opacity-60 cursor-not-allowed grayscale filter' : 'hover:-translate-y-1 hover:shadow-xl hover:bg-white/60 dark:hover:bg-white/10'}"
+                    class="group relative isolate block p-6 bg-white/30 dark:bg-white/10 rounded-2xl shadow-lg transition-all duration-300 w-full text-left overflow-hidden
+                    {friend.disable ? 'opacity-60 cursor-not-allowed grayscale filter' : 'hover:-translate-y-1 hover:shadow-2xl'}"
+                    style="backdrop-filter: blur(8px);"
                 >
-                    <div class="flex items-center space-x-4">
+                    <!-- 内边框高光层 -->
+                    <div class="pointer-events-none absolute inset-0 z-10 rounded-[inherit] border border-white/20 shadow-[inset_0_0_15px_rgba(255,255,255,0.05)]"></div>
+                    
+                    <!-- 渐变光泽层 -->
+                    <div class="pointer-events-none absolute inset-0 z-10 rounded-[inherit] opacity-50" style="background: linear-gradient(120deg, rgba(255,255,255,0.15) 0%, transparent 40%);"></div>
+                    
+                    <!-- 内容层 -->
+                    <div class="relative z-20 flex items-center space-x-4">
                         <img 
                             src={friend.avatar} 
                             alt={friend.name} 

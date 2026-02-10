@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Payments from '../components/Payments.svelte';
+import { siteConfig } from '../config';
+import { Icon } from 'astro-icon/components';
+---
+
+<Layout title={`打钱 - ${siteConfig.title}`} description="如果您觉得内容有帮助，欢迎打钱支持">
+  <div class="max-w-4xl mx-auto px-4 py-8 animate-slide-up">
+    <!-- 页面标题 -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-linear-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent">
+        打钱支持
+      </h1>
+      <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        如果您觉得我的内容对您有所帮助，欢迎打钱支持一下！<br/>
+        您的支持是我持续创作的动力 💖
+      </p>
+    </div>
+
+    <!-- 支付组件 -->
+    <Payments client:load />
+
+    <!-- 提示卡片 -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-16 max-w-2xl mx-auto">
+      <div class="flex flex-col items-center gap-3 p-6 bg-white/5 dark:bg-white/5 backdrop-blur-sm border border-white/20 rounded-2xl text-center hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+        <Icon name="lucide:lightbulb" class="w-8 h-8 text-purple-600 dark:text-purple-400" />
+        <p class="text-base font-medium text-gray-800 dark:text-gray-200">扫码后可以留言哦</p>
+      </div>
+      <div class="flex flex-col items-center gap-3 p-6 bg-white/5 dark:bg-white/5 backdrop-blur-sm border border-white/20 rounded-2xl text-center hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+        <Icon name="lucide:heart" class="w-8 h-8 text-purple-600 dark:text-purple-400" />
+        <p class="text-base font-medium text-gray-800 dark:text-gray-200">感谢每一位支持者</p>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

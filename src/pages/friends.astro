@@ -5,7 +5,15 @@ import { friendLinks, siteConfig } from '../config';
 ---
 
 <Layout title={`友链 | ${siteConfig.title}`} description="查看我的友链列表。">
-  <div class="max-w-5xl mx-auto py-12 animate-slide-up">
+  <!-- 装饰背景层 - 为 backdrop-blur 提供可模糊的内容 -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+    <div class="absolute top-20 left-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
+    <div class="absolute top-60 right-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-40 left-1/3 w-72 h-72 bg-pink-500/20 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 right-1/4 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="max-w-5xl mx-auto py-12 animate-slide-up relative">
     <div class="text-center mb-16">
       <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">友链</h1>
       <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -19,6 +27,11 @@ import { friendLinks, siteConfig } from '../config';
         <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100">如何加入友链</h3>
         <p class="text-gray-600 dark:text-gray-400 mb-6">
             请通过社交媒体与我联系，发送您的网站信息和简短介绍。
+            本站友链配置: </br>
+            名称（name）：戊成的主页 </br>
+            链接（link）：https://wucheng.work </br>
+            描述（description）：怀念过去，珍惜现在，着手未来。 </br>
+            头像（avatar）：https://q1.qlogo.cn/g?b=qq&nk=3241748701&s=640
         </p>
         <!-- <a href="mailto:2538000780@qq.com" class="inline-block px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors font-medium">
             Contact Me

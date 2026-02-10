@@ -12,7 +12,7 @@
     
     - name: "扶摇 Skyrocketing"
       link: "https://fuyaoskyrocket.ing/"
-      description: "凡事豫则立，不豫则废"
+      description: "尝试在互联网上留下一些属于自己的痕迹"
       avatar: "https://github.com/skyrocketingHong.png"
     
     - name: "Ctone"
@@ -20,10 +20,15 @@
       description: "普普通通，勉勉强强算一名大学生（"
       avatar: "https://c.disquscdn.com/uploads/users/40625/5129/avatar92.jpg?1714050307"
     
-    - name: "Meiage-米来吉"
+    - name: "Mirage-米来吉"
       link: "https://miraged.fun/"
       description: ""
       avatar: "https://q1.qlogo.cn/g?b=qq&nk=669205145&s=640"
+
+    - name: "橙橙忻冰乐"
+      link: "https://blog.fraxxuccino.com/"
+      description: "情之所钟，虽千万里吾念矣"
+      avatar: "https://avatars.githubusercontent.com/u/224515785?v=4&size=64"
 
 - title: "失联人士"
   items:

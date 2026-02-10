@@ -19,6 +19,7 @@
     },
     { name: "友链", path: "/friends" },
     { name: "日志", path: "/log" },
+    { name: "打钱", path: "/pay" },
     { name: "关于我", path: "/about" },
   ];
 
