@@ -60,10 +60,8 @@
 
   function handlePaymentClick(payment: Payment) {
     if (payment.id === 'alipay' && isMobile) {
-      window.open(
-        `alipays://platformapi/startapp?appId=09999988&qrcode=${encodeURIComponent(payment.link)}`,
-        '_blank'
-      );
+      window.location.href = `alipays://platformapi/startapp?appId=09999988&qrcode=${encodeURIComponent(payment.link)}`;
+      selectPayment = payment.id;
       return;
     }
 
@@ -175,7 +173,7 @@
               <div class="flex flex-col items-center gap-2">
                  <h3 class="text-xl font-bold text-gray-800 dark:text-white">{payment.name}</h3>
                  <p class="text-sm text-gray-500 dark:text-gray-400">
-                   {isMobile ? '长按保存二维码' : '扫码支付'}
+                   {isMobile ? '截图扫描二维码' : '扫码支付'}
                  </p>
               </div>
               
