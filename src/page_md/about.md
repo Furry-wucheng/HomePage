@@ -10,7 +10,7 @@ description: "关于我 | About Me"
 
 ### 关于网站
 
-网站基于 Astro、Servlet 与Tailwind 进行构建，使用 Chrome 浏览体验更佳哦。
+网站基于 Astro、Svelte与Tailwind 进行构建，使用 Chrome 浏览体验更佳哦。
 
 这个个人主页大致上都是用 Antigravity 和 Gemini 3 Pro Vibe Coding 出来的。
 
