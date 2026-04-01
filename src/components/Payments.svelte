@@ -54,8 +54,8 @@
     };
     checkScreen();
     window.addEventListener('resize', checkScreen);
-    return () => window.removeEventListener('resize', checkScreen);
     isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    return () => window.removeEventListener('resize', checkScreen);
   });
 
   function handlePaymentClick(payment: Payment) {
@@ -67,10 +67,10 @@
       return;
     }
 
-    if (payment.id === 'wechat' && isMobile) {
-      window.location.href = payment.link;
-      return;
-    }
+    // if (payment.id === 'wechat' && isMobile) {
+    //   window.location.href = payment.link;
+    //   return;
+    // }
 
     if (selectPayment === payment.id) {
       selectPayment = '';
@@ -122,7 +122,7 @@
 </script>
 
 <div class="w-full max-w-4xl mx-auto px-4 py-8">
-  <div class="flex flex-col sm:flex-row gap-4 h-auto min-h-[160px] items-stretch">
+  <div class="flex flex-col sm:flex-row gap-4 h-auto min-h-40 items-stretch">
     {#each payments as payment}
       {@const isSelected = selectPayment === payment.id}
       {@const hasSelection = selectPayment !== ''}
@@ -141,7 +141,7 @@
           ? 'w-0 opacity-0 p-0 border-0 m-0 overflow-hidden' 
           : 'p-6 bg-white/5 dark:bg-white/5 backdrop-blur-sm border border-white/20 hover:shadow-lg hover:bg-white/10 dark:hover:bg-white/15 cursor-pointer'}
         {!hasSelection ? 'flex-1 hover:-translate-y-1' : ''}
-        {isSelected ? 'flex-[10]' : ''}"
+        {isSelected ? 'flex-10' : ''}"
         style="
           {isHidden ? 'flex-grow: 0 !important; width: 0 !important; min-width: 0 !important; padding: 0 !important; opacity: 0;' : ''}
           {isSelected ? 'min-height: 400px;' : 'min-height: 148px;'}
@@ -151,7 +151,7 @@
       >
         <!-- 未展开状态 - 只在未选中且不隐藏时显示 -->
         {#if !isSelected && !isHidden}
-          <div class="flex flex-col items-center gap-4 min-w-[120px]">
+          <div class="flex flex-col items-center gap-4 min-w-30">
             <div class="w-16 h-16 rounded-full {payment.iconBg} flex items-center justify-center shadow-lg transition-transform duration-300">
               <Icon icon={payment.icon} class="text-white" width="32" height="32" />
             </div>

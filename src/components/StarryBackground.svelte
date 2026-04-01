@@ -1,4 +1,4 @@
-<div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-950 dark:to-black transition-colors duration-500">
+<div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none bg-linear-to-b from-gray-50 to-gray-100 dark:from-gray-950 dark:to-black transition-colors duration-500">
     <div class="stars absolute inset-0"></div>
     <div class="stars2 absolute inset-0"></div>
     <div class="stars3 absolute inset-0"></div>

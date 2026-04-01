@@ -2,6 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import FriendList from '../components/FriendList.svelte';
 import { friendLinks, siteConfig } from '../config';
+
+const codeSnippet = `name: 戊成的主页
+link: https://wucheng.work
+description: 怀念过去，珍惜现在，着手未来。
+avatar: https://q1.qlogo.cn/g?b=qq&nk=3241748701&s=640
+`;
 ---
 
 <Layout title={`友链 | ${siteConfig.title}`} description="查看我的友链列表。">
@@ -26,13 +32,9 @@ import { friendLinks, siteConfig } from '../config';
     <div class="mt-20 p-8 rounded-2xl bg-linear-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 text-center">
         <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100">如何加入友链</h3>
         <p class="text-gray-600 dark:text-gray-400 mb-6">
-            请通过社交媒体与我联系，发送您的网站信息和简短介绍。
-            本站友链配置: </br>
-            名称（name）：戊成的主页 </br>
-            链接（link）：https://wucheng.work </br>
-            描述（description）：怀念过去，珍惜现在，着手未来。 </br>
-            头像（avatar）：https://q1.qlogo.cn/g?b=qq&nk=3241748701&s=640
+        请通过社交媒体与我联系，发送您的网站信息和简短介绍。或者发送邮件到<a href="mailto:2538000780@qq.com" class="text-blue-500 hover:text-blue-700">这里</a>
         </p>
+        <pre class="md-code-block"><code>{codeSnippet}</code></pre>
         <!-- <a href="mailto:2538000780@qq.com" class="inline-block px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors font-medium">
             Contact Me
         </a> -->
@@ -44,6 +46,31 @@ import { friendLinks, siteConfig } from '../config';
     .animate-slide-up {
         animation: slideUp 0.8s ease-out forwards;
     }
+
+  .md-code-block {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 42rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: #0b1220;
+    color: #e5e7eb;
+    text-align: left;
+    font-family: "Fira Code", "Cascadia Code", Consolas, "Courier New", monospace;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    white-space: pre;
+    overflow-wrap: normal;
+    word-break: normal;
+    overflow-x: auto;
+  }
+
+  .md-code-block code {
+    display: inline-block;
+    min-width: max-content;
+  }
+
     @keyframes slideUp {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
